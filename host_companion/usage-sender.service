@@ -1,0 +1,15 @@
+[Unit]
+Description=Usage Sender — polls Claude Code and Codex, publishes to Firestore
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/esp32_claude_codex_meter/host_companion
+ExecStart=/home/pi/esp32_claude_codex_meter/host_companion/.venv/bin/python3 usage_sender.py
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

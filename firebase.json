@@ -1,0 +1,10 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "public": "Clawdmeter",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  }
+}

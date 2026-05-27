@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clawdmeter — Claude &amp; Codex usage</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Clawdmeter</h1>
+      <div class="range" id="range">
+        <button data-range="1h">1h</button>
+        <button data-range="24h" class="active">24h</button>
+        <button data-range="7d">7d</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="cards">
+        <article class="card" id="card-claude" data-provider="claude">
+          <div class="card-head">
+            <span class="dot"></span><h2>Claude</h2>
+            <span class="status" data-field="status">—</span>
+          </div>
+          <div class="meter">
+            <div class="meter-label">Session (5h)</div>
+            <div class="bar"><div class="fill" data-field="sessionFill"></div></div>
+            <div class="meter-val"><span data-field="sessionPct">—</span>% · resets <span data-field="sessionReset">—</span></div>
+          </div>
+          <div class="meter">
+            <div class="meter-label">Weekly (7d)</div>
+            <div class="bar">
+              <div class="budget" data-field="weeklyBudget"></div>
+              <div class="fill" data-field="weeklyFill"></div>
+            </div>
+            <div class="meter-val"><span data-field="weeklyPct">—</span>% · resets <span data-field="weeklyReset">—</span></div>
+          </div>
+          <div class="updated">updated <span data-field="updated">—</span></div>
+        </article>
+
+        <article class="card" id="card-codex" data-provider="codex">
+          <div class="card-head">
+            <span class="dot"></span><h2>Codex</h2>
+            <span class="status" data-field="status">—</span>
+          </div>
+          <div class="meter">
+            <div class="meter-label">Session (5h)</div>
+            <div class="bar"><div class="fill" data-field="sessionFill"></div></div>
+            <div class="meter-val"><span data-field="sessionPct">—</span>% · resets <span data-field="sessionReset">—</span></div>
+          </div>
+          <div class="meter">
+            <div class="meter-label">Weekly (7d)</div>
+            <div class="bar">
+              <div class="budget" data-field="weeklyBudget"></div>
+              <div class="fill" data-field="weeklyFill"></div>
+            </div>
+            <div class="meter-val"><span data-field="weeklyPct">—</span>% · resets <span data-field="weeklyReset">—</span></div>
+          </div>
+          <div class="updated">updated <span data-field="updated">—</span></div>
+        </article>
+      </section>
+
+      <section class="charts">
+        <div class="chart-wrap">
+          <h3>Claude — usage over time</h3>
+          <canvas id="chart-claude"></canvas>
+        </div>
+        <div class="chart-wrap">
+          <h3>Codex — usage over time</h3>
+          <canvas id="chart-codex"></canvas>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

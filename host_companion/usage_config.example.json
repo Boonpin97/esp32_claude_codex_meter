@@ -1,0 +1,15 @@
+{
+  "project_id": "your-project-id",
+  "poll_interval_secs": 60,
+  "request_timeout_secs": 20,
+  "history_interval_secs": 300,
+  "history_retention_hours": 168,
+  "service_account_json": "service-account.json",
+  "claude": {
+    "document_path": "usage/current",
+    "model": "claude-haiku-4-5-20251001"
+  },
+  "codex": {
+    "document_path": "usage/codex"
+  }
+}

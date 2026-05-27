@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entry xml:base="http://datamall2.mytransport.sg/ltaodataservice" xmlns="http://www.w3.org/2005/Atom" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml">
+    <id>https://datamall2.mytransport.sg/ltaodataservice/v3/BusArrival('20251')</id>
+    <category term="DataMall2.Models.BusETA.BusArrival" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <link rel="edit" href="http://datamall2.mytransport.sg/ltaodataservice/BusArrival('20251')" />
+    <link rel="self" href="http://datamall2.mytransport.sg/ltaodataservice/BusArrival('20251')" />
+    <title />
+    <updated>2024-8-22T7:24:6Z</updated>
+    <author>
+        <name />
+    </author>
+    <content type="application/xml">
+        <m:properties>
+            <d:BusStopID>20251</d:BusStopID>
+            <d:Services m:type="Collection(DataMall2.Models.BusETA.BusServiceInfo)">
+                <d:element>
+                    <d:ServiceNo>176</d:ServiceNo>
+                    <d:Operator>SMRT</d:Operator>
+                    <d:NextBus m:type="DataMall2.Models.BusETA.ArrivalInfo">
+                        <d:OriginCode>10009</d:OriginCode>
+                        <d:DestinationCode>45009</d:DestinationCode>
+                        <d:EstimatedArrival m:type="Edm.DateTime">2024-08-22T15:28:16+08:00</d:EstimatedArrival>
+                        <d:Monitored>1</d:Monitored>
+                        <d:Latitude>1.3101788333333333</d:Latitude>
+                        <d:Longitude>103.756378</d:Longitude>
+                        <d:VisitNumber>1</d:VisitNumber>
+                        <d:Load>SEA</d:Load>
+                        <d:Feature>WAB</d:Feature>
+                        <d:Type>DD</d:Type>
+                    </d:NextBus>
+                    <d:NextBus2 m:type="DataMall2.Models.BusETA.ArrivalInfo">
+                        <d:OriginCode>10009</d:OriginCode>
+                        <d:DestinationCode>45009</d:DestinationCode>
+                        <d:EstimatedArrival m:type="Edm.DateTime">2024-08-22T15:42:18+08:00</d:EstimatedArrival>
+                        <d:Monitored>1</d:Monitored>
+                        <d:Latitude>1.276848</d:Latitude>
+                        <d:Longitude>103.789578</d:Longitude>
+                        <d:VisitNumber>1</d:VisitNumber>
+                        <d:Load>SEA</d:Load>
+                        <d:Feature>WAB</d:Feature>
+                        <d:Type>DD</d:Type>
+                    </d:NextBus2>
+                    <d:NextBus3 m:type="DataMall2.Models.BusETA.ArrivalInfo">
+                        <d:OriginCode>10009</d:OriginCode>
+                        <d:DestinationCode>45009</d:DestinationCode>
+                        <d:EstimatedArrival m:type="Edm.DateTime">2024-08-22T15:49:38+08:00</d:EstimatedArrival>
+                        <d:Monitored>1</d:Monitored>
+                        <d:Latitude>1.2751511666666666</d:Latitude>
+                        <d:Longitude>103.814938</d:Longitude>
+                        <d:VisitNumber>1</d:VisitNumber>
+                        <d:Load>SEA</d:Load>
+                        <d:Feature>WAB</d:Feature>
+                        <d:Type>SD</d:Type>
+                    </d:NextBus3>
+                </d:element>
+                <d:element>
+                    <d:ServiceNo>30</d:ServiceNo>
+                    <d:Operator>SBST</d:Operator>
+                    <d:NextBus m:type="DataMall2.Models.BusETA.ArrivalInfo">
+                        <d:OriginCode>84009</d:OriginCode>
+                        <d:DestinationCode>22009</d:DestinationCode>
+                        <d:EstimatedArrival m:type="Edm.DateTime">2024-08-22T15:25:41+08:00</d:EstimatedArrival>
+                        <d:Monitored>1</d:Monitored>
+                        <d:Latitude>1.3177271666666668</d:Latitude>
+                        <d:Longitude>103.74908566666667</d:Longitude>
+                        <d:VisitNumber>1</d:VisitNumber>
+                        <d:Load>SEA</d:Load>
+                        <d:Feature>WAB</d:Feature>
+                        <d:Type>DD</d:Type>
+                    </d:NextBus>
+                    <d:NextBus2 m:type="DataMall2.Models.BusETA.ArrivalInfo">
+                        <d:OriginCode>84009</d:OriginCode>
+                        <d:DestinationCode>22009</d:DestinationCode>
+                        <d:EstimatedArrival m:type="Edm.DateTime">2024-08-22T15:29:52+08:00</d:EstimatedArrival>
+                        <d:Monitored>1</d:Monitored>
+                        <d:Latitude>1.3110051666666667</d:Latitude>
+                        <d:Longitude>103.75766</d:Longitude>
+                        <d:VisitNumber>1</d:VisitNumber>
+                        <d:Load>SEA</d:Load>
+                        <d:Feature>WAB</d:Feature>
+                        <d:Type>SD</d:Type>
+                    </d:NextBus2>
+                    <d:NextBus3 m:type="DataMall2.Models.BusETA.ArrivalInfo">
+                        <d:OriginCode>84009</d:OriginCode>
+                        <d:DestinationCode>22009</d:DestinationCode>
+                        <d:EstimatedArrival m:type="Edm.DateTime">2024-08-22T15:49:11+08:00</d:EstimatedArrival>
+                        <d:Monitored>1</d:Monitored>
+                        <d:Latitude>1.2767768333333334</d:Latitude>
+                        <d:Longitude>103.79012383333334</d:Longitude>
+                        <d:VisitNumber>1</d:VisitNumber>
+                        <d:Load>SEA</d:Load>
+                        <d:Feature>WAB</d:Feature>
+                        <d:Type>DD</d:Type>
+                    </d:NextBus3>
+                </d:element>
+                <d:element>
+                    <d:ServiceNo>78</d:ServiceNo>
+                    <d:Operator>TTS</d:Operator>
+                    <d:NextBus m:type="DataMall2.Models.BusETA.ArrivalInfo">
+                        <d:OriginCode>29009</d:OriginCode>
+                        <d:DestinationCode>29009</d:DestinationCode>
+                        <d:EstimatedArrival m:type="Edm.DateTime">2024-08-22T15:29:41+08:00</d:EstimatedArrival>
+                        <d:Monitored>1</d:Monitored>
+                        <d:Latitude>1.3111485</d:Latitude>
+                        <d:Longitude>103.7342885</d:Longitude>
+                        <d:VisitNumber>1</d:VisitNumber>
+                        <d:Load>SEA</d:Load>
+                        <d:Feature>WAB</d:Feature>
+                        <d:Type>DD</d:Type>
+                    </d:NextBus>
+                    <d:NextBus2 m:type="DataMall2.Models.BusETA.ArrivalInfo">
+                        <d:OriginCode>29009</d:OriginCode>
+                        <d:DestinationCode>29009</d:DestinationCode>
+                        <d:EstimatedArrival m:type="Edm.DateTime">2024-08-22T15:52:08+08:00</d:EstimatedArrival>
+                        <d:Monitored>1</d:Monitored>
+                        <d:Latitude>1.3122828333333334</d:Latitude>
+                        <d:Longitude>103.76574866666667</d:Longitude>
+                        <d:VisitNumber>1</d:VisitNumber>
+                        <d:Load>SEA</d:Load>
+                        <d:Feature>WAB</d:Feature>
+                        <d:Type>DD</d:Type>
+                    </d:NextBus2>
+                    <d:NextBus3 m:type="DataMall2.Models.BusETA.ArrivalInfo">
+                        <d:OriginCode></d:OriginCode>
+                        <d:DestinationCode></d:DestinationCode>
+                        <d:EstimatedArrival m:null="true"></d:EstimatedArrival>
+                        <d:Monitored>0</d:Monitored>
+                        <d:Latitude></d:Latitude>
+                        <d:Longitude></d:Longitude>
+                        <d:VisitNumber></d:VisitNumber>
+                        <d:Load></d:Load>
+                        <d:Feature></d:Feature>
+                        <d:Type></d:Type>
+                    </d:NextBus3>
+                </d:element>
+            </d:Services>
+        </m:properties>
+    </content>
+</entry>

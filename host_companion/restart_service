@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo systemctl restart claude-usage-sender && sudo systemctl status claude-usage-sender --no-pager

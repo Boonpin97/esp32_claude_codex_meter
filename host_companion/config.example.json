@@ -1,0 +1,8 @@
+{
+  "project_id": "claude-codex-monitor",
+  "document_path": "usage/current",
+  "poll_interval_secs": 60,
+  "request_timeout_secs": 20,
+  "model": "claude-3-5-haiku-20241022",
+  "service_account_json": "service-account.json"
+}
