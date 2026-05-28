@@ -341,7 +341,19 @@ def poll_claude(ref, config: dict[str, Any]) -> dict[str, Any] | None:
             if not refreshed:
                 write_payload(ref, build_error_payload("auth_expired"))
                 return None
-            h = _make_claude_request(refreshed, model, timeout)
+            try:
+                h = _make_claude_request(refreshed, model, timeout)
+            except HTTPError as retry_exc:
+                if retry_exc.code == 429:
+                    h = {k.lower(): v for k, v in retry_exc.headers.items()}
+                    payload = _build_claude_payload(h)
+                    write_payload(ref, payload)
+                    log(
+                        f"Claude: session={payload['sessionPct']}% weekly={payload['weeklyPct']}%"
+                        f" status={payload['status']} (429 on retry)"
+                    )
+                    return payload
+                raise
         elif exc.code == 429:
             # 429 still carries rate-limit headers — extract them instead of zeroing out
             h = {k.lower(): v for k, v in exc.headers.items()}
