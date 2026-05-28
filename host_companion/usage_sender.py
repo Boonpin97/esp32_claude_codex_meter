@@ -334,15 +334,26 @@ def poll_claude(ref, config: dict[str, Any]) -> dict[str, Any] | None:
     try:
         h = _make_claude_request(token, model, timeout)
     except HTTPError as exc:
-        if exc.code != 401:
+        if exc.code == 401:
+            body = exc.read().decode("utf-8", errors="replace")
+            log(f"Claude: HTTP 401 — refreshing token and retrying: {body[:120]}")
+            refreshed = force_refresh_claude_token(timeout)
+            if not refreshed:
+                write_payload(ref, build_error_payload("auth_expired"))
+                return None
+            h = _make_claude_request(refreshed, model, timeout)
+        elif exc.code == 429:
+            # 429 still carries rate-limit headers — extract them instead of zeroing out
+            h = {k.lower(): v for k, v in exc.headers.items()}
+            payload = _build_claude_payload(h)
+            write_payload(ref, payload)
+            log(
+                f"Claude: session={payload['sessionPct']}% weekly={payload['weeklyPct']}%"
+                f" status={payload['status']} (429)"
+            )
+            return payload
+        else:
             raise
-        body = exc.read().decode("utf-8", errors="replace")
-        log(f"Claude: HTTP 401 — refreshing token and retrying: {body[:120]}")
-        refreshed = force_refresh_claude_token(timeout)
-        if not refreshed:
-            write_payload(ref, build_error_payload("auth_expired"))
-            return None
-        h = _make_claude_request(refreshed, model, timeout)
 
     payload = _build_claude_payload(h)
     write_payload(ref, payload)
