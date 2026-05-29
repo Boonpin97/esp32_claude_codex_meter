@@ -334,6 +334,7 @@ def poll_claude(ref, config: dict[str, Any]) -> dict[str, Any] | None:
     try:
         h = _make_claude_request(token, model, timeout)
     except HTTPError as exc:
+        log(f"DEBUG poll_claude inner handler: code={exc.code!r} type={type(exc.code).__name__}")
         if exc.code == 401:
             body = exc.read().decode("utf-8", errors="replace")
             log(f"Claude: HTTP 401 — refreshing token and retrying: {body[:120]}")
@@ -483,6 +484,9 @@ def main() -> int:
                 log(f"{name} HTTP {exc.code}: {body[:200]}")
                 if exc.code == 401:
                     write_payload(ref, build_error_payload("auth_expired"))
+                elif exc.code == 429 and name == "Claude":
+                    h = {k.lower(): v for k, v in exc.headers.items()}
+                    write_payload(ref, _build_claude_payload(h))
                 elif exc.code == 429:
                     write_payload(ref, build_error_payload("rate_limited"))
                 else:
