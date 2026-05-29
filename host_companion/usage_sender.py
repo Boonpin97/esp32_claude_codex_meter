@@ -129,6 +129,18 @@ def build_error_payload(status: str) -> dict[str, Any]:
     }
 
 
+def build_rate_limited_payload() -> dict[str, Any]:
+    return {
+        "sessionPct": 0,
+        "sessionResetAt": "",
+        "weeklyPct": 0,
+        "weeklyResetAt": "",
+        "status": "rate_limited",
+        "ok": True,
+        "updatedAt": datetime.now().astimezone().isoformat(),
+    }
+
+
 # ── Claude ────────────────────────────────────────────────────────────────────
 
 def _extract_claude_token(blob: str) -> str | None:
@@ -334,7 +346,6 @@ def poll_claude(ref, config: dict[str, Any]) -> dict[str, Any] | None:
     try:
         h = _make_claude_request(token, model, timeout)
     except HTTPError as exc:
-        log(f"DEBUG poll_claude inner handler: code={exc.code!r} type={type(exc.code).__name__}")
         if exc.code == 401:
             body = exc.read().decode("utf-8", errors="replace")
             log(f"Claude: HTTP 401 — refreshing token and retrying: {body[:120]}")
@@ -346,24 +357,15 @@ def poll_claude(ref, config: dict[str, Any]) -> dict[str, Any] | None:
                 h = _make_claude_request(refreshed, model, timeout)
             except HTTPError as retry_exc:
                 if retry_exc.code == 429:
-                    h = {k.lower(): v for k, v in retry_exc.headers.items()}
-                    payload = _build_claude_payload(h)
+                    payload = build_rate_limited_payload()
                     write_payload(ref, payload)
-                    log(
-                        f"Claude: session={payload['sessionPct']}% weekly={payload['weeklyPct']}%"
-                        f" status={payload['status']} (429 on retry)"
-                    )
+                    log("Claude: rate_limited (429 on retry)")
                     return payload
                 raise
         elif exc.code == 429:
-            # 429 still carries rate-limit headers — extract them instead of zeroing out
-            h = {k.lower(): v for k, v in exc.headers.items()}
-            payload = _build_claude_payload(h)
+            payload = build_rate_limited_payload()
             write_payload(ref, payload)
-            log(
-                f"Claude: session={payload['sessionPct']}% weekly={payload['weeklyPct']}%"
-                f" status={payload['status']} (429)"
-            )
+            log("Claude: rate_limited (429)")
             return payload
         else:
             raise
@@ -485,8 +487,7 @@ def main() -> int:
                 if exc.code == 401:
                     write_payload(ref, build_error_payload("auth_expired"))
                 elif exc.code == 429 and name == "Claude":
-                    h = {k.lower(): v for k, v in exc.headers.items()}
-                    write_payload(ref, _build_claude_payload(h))
+                    write_payload(ref, build_rate_limited_payload())
                 elif exc.code == 429:
                     write_payload(ref, build_error_payload("rate_limited"))
                 else:
