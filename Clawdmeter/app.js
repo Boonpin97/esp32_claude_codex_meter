@@ -28,8 +28,8 @@ const PROVIDERS = {
   codex: { docPath: ["usage", "codex"], color: "#00b4b0", weeklyColor: "#6fe3df" },
 };
 
-// Visible window → max points to fetch (history is written ~every 5 min).
-const RANGES = { "1h": 12, "24h": 288, "7d": 2016 };
+// Visible window → max points to fetch (history is written ~every 15 min).
+const RANGES = { "1h": 4, "24h": 96, "7d": 672 };
 let currentRange = "24h";
 
 const charts = {};
@@ -210,4 +210,3 @@ document.getElementById("range").addEventListener("click", (e) => {
 });
 
 refreshCharts();
-setInterval(refreshCharts, 5 * 60 * 1000);
